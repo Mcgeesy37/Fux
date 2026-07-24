@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Andreas Fux — Fotograf Berlin</title>
-<meta name="description" content="Andreas Fux — Fotograf in Berlin. Portfolio, Galerie und Kontakt.">
+<meta name="description" content="Andreas Fux — Fotograf in Berlin. Portfolio, Galerie, Buch und Kontakt.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,6 +15,7 @@
   <nav class="main-nav" id="mainNav">
     <a href="#about">Über mich</a>
     <a href="#galerie">Galerie</a>
+    <a href="#buch">Buch</a>
     <a href="presse.html">Presse</a>
     <a href="#kontakt">Kontakt</a>
     <a href="https://instagram.com/DEIN_INSTAGRAM_NAME" target="_blank" rel="noopener" class="ig-link" aria-label="Instagram">
@@ -27,15 +28,23 @@
   </nav>
 </header>
 
+<!-- ROTER NAVIGATOR-PFEIL (rechts, springt zur nächsten Sektion) -->
+<button class="nav-arrow" id="navArrow" aria-label="Weiter zur nächsten Sektion">
+  <svg viewBox="0 0 48 24" width="48" height="24" aria-hidden="true">
+    <line x1="0" y1="12" x2="38" y2="12" stroke="currentColor" stroke-width="2"/>
+    <polyline points="30,4 42,12 30,20" fill="none" stroke="currentColor" stroke-width="2"/>
+  </svg>
+</button>
+
 <main>
 
-  <section class="hero">
+  <section class="hero" id="top" data-section>
     <h1 class="display-name">ANDREAS FUX</h1>
     <p class="hero-sub">FOTOGRAF — BERLIN</p>
     <span class="hero-line"></span>
   </section>
 
-  <section id="about" class="about">
+  <section id="about" class="about" data-section>
     <div class="about-grid">
       <div class="about-image reveal">
         <img src="images/portrait.jpg" alt="Andreas Fux">
@@ -57,7 +66,7 @@
     </div>
   </section>
 
-  <section id="galerie" class="gallery-section">
+  <section id="galerie" class="gallery-section" data-section>
     <h2 class="section-label reveal">Galerie</h2>
     <div class="full-grid" id="galleryGrid">
       <div class="img-item reveal"><img src="images/01.jpg" alt="Arbeit 01"></div>
@@ -72,32 +81,36 @@
     </div>
   </section>
 
-  <section id="kontakt" class="kontakt">
-    <h2 class="reveal">Kontakt</h2>
-    <p class="kontakt-intro reveal">Für Anfragen, Aufträge oder Presseanfragen schreiben Sie mir gerne.</p>
+  <!-- BUCH -->
+  <section id="buch" class="buch-section" data-section>
+    <h2 class="section-label reveal">Buch</h2>
 
-    <form action="https://formsubmit.co/info@andreas-fux.de" method="POST" class="contact-form reveal">
-      <input type="hidden" name="_subject" value="Neue Nachricht über andreas-fux.de">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://www.andreas-fux.de/index.html#kontakt">
-
-      <div class="form-field">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="Name" required>
+    <div class="buch-grid">
+      <div class="buch-cover reveal">
+        <img src="images/buch.jpg" alt="Buch von Andreas Fux">
       </div>
-
-      <div class="form-field">
-        <label for="email">E-Mail</label>
-        <input type="email" id="email" name="E-Mail" required>
+      <div class="buch-text reveal">
+        <h3>Titel des Buches</h3>
+        <p class="buch-meta">Fotografien — Verlag, Jahr</p>
+        <p>
+          Kurzer Beschreibungstext zum Buch. Hier können Umfang, Format,
+          Ausstattung und ein Satz zum Inhalt stehen.
+        </p>
       </div>
+    </div>
 
-      <div class="form-field">
-        <label for="nachricht">Nachricht</label>
-        <textarea id="nachricht" name="Nachricht" rows="6" required></textarea>
-      </div>
+    <!-- Link zum Shop (direkt unter dem Buch) -->
+    <div class="buch-links reveal">
+      <a href="SHOP_URL_HIER_EINTRAGEN" target="_blank" rel="noopener" class="shop-link">
+        Zum Shop
+      </a>
+    </div>
+  </section>
 
-      <button type="submit">Absenden</button>
-    </form>
+  <!-- KONTAKT — nur der Mail-Link -->
+  <section id="kontakt" class="kontakt" data-section>
+    <h2 class="section-label reveal">Kontakt</h2>
+    <a href="mailto:info@andreas-fux.de" class="mail-link reveal">info@andreas-fux.de</a>
   </section>
 
 </main>
