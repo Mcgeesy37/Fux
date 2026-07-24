@@ -7,10 +7,7 @@ document.querySelectorAll('#year').forEach(el => {
 const navToggle = document.getElementById('navToggle');
 const mainNav = document.getElementById('mainNav');
 if (navToggle && mainNav) {
-  navToggle.addEventListener('click', () => {
-    mainNav.classList.toggle('open');
-  });
-  // Schließen beim Klick auf einen Nav-Link
+  navToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
   mainNav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => mainNav.classList.remove('open'));
   });
@@ -30,7 +27,34 @@ if (revealElements.length) {
   revealElements.forEach(el => observer.observe(el));
 }
 
-// Lightbox mit Pfeiltasten-Navigation
+// ===== ROTER NAVIGATOR-PFEIL =====
+const navArrow = document.getElementById('navArrow');
+const sections = Array.from(document.querySelectorAll('[data-section]'));
+
+if (navArrow && sections.length) {
+  // Springt zur nächsten Sektion unterhalb der aktuellen Scrollposition
+  navArrow.addEventListener('click', () => {
+    const headerH = document.querySelector('.site-header').offsetHeight;
+    const y = window.scrollY + headerH + 10;
+    const next = sections.find(s => s.offsetTop > y + 5);
+
+    if (next) {
+      window.scrollTo({ top: next.offsetTop - headerH, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
+  // Pfeil am Seitenende ausblenden
+  const toggleArrow = () => {
+    const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 120;
+    navArrow.classList.toggle('hidden', atBottom);
+  };
+  window.addEventListener('scroll', toggleArrow, { passive: true });
+  toggleArrow();
+}
+
+// ===== LIGHTBOX =====
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const lightboxClose = document.getElementById('lightboxClose');
@@ -41,50 +65,41 @@ let galleryImages = [];
 let currentIndex = 0;
 
 if (lightbox) {
-  const items = document.querySelectorAll('.img-item img');
-  galleryImages = Array.from(items);
+  galleryImages = Array.from(document.querySelectorAll('.img-item img'));
 
-  function openLightbox(index) {
-    currentIndex = index;
+  const show = (i) => {
+    currentIndex = (i + galleryImages.length) % galleryImages.length;
     lightboxImg.src = galleryImages[currentIndex].src;
     lightboxImg.alt = galleryImages[currentIndex].alt;
+  };
+
+  const open = (i) => {
+    show(i);
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
-  }
+  };
 
-  function closeLightbox() {
+  const close = () => {
     lightbox.classList.remove('open');
     document.body.style.overflow = '';
-  }
-
-  function showPrev() {
-    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-    lightboxImg.src = galleryImages[currentIndex].src;
-    lightboxImg.alt = galleryImages[currentIndex].alt;
-  }
-
-  function showNext() {
-    currentIndex = (currentIndex + 1) % galleryImages.length;
-    lightboxImg.src = galleryImages[currentIndex].src;
-    lightboxImg.alt = galleryImages[currentIndex].alt;
-  }
+  };
 
   galleryImages.forEach((img, i) => {
-    img.parentElement.addEventListener('click', () => openLightbox(i));
+    img.parentElement.addEventListener('click', () => open(i));
   });
 
-  lightboxClose.addEventListener('click', closeLightbox);
-  if (lightboxPrev) lightboxPrev.addEventListener('click', showPrev);
-  if (lightboxNext) lightboxNext.addEventListener('click', showNext);
+  lightboxClose.addEventListener('click', close);
+  if (lightboxPrev) lightboxPrev.addEventListener('click', () => show(currentIndex - 1));
+  if (lightboxNext) lightboxNext.addEventListener('click', () => show(currentIndex + 1));
 
   lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
+    if (e.target === lightbox) close();
   });
 
   document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') showPrev();
-    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'Escape')     close();
+    if (e.key === 'ArrowLeft')  show(currentIndex - 1);
+    if (e.key === 'ArrowRight') show(currentIndex + 1);
   });
 }
