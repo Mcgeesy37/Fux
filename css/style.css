@@ -778,3 +778,9 @@ h1, h2 { font-weight: 400; letter-spacing: 0.04em; }
   .nav-arrow { right: 12px; }
   .nav-arrow svg { width: 36px; height: 18px; }
 }
+
+.book-author {
+    margin-top: 20px;
+    font-style: italic;
+    color: #bbb;
+}
