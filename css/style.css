@@ -784,3 +784,119 @@ h1, h2 { font-weight: 400; letter-spacing: 0.04em; }
     font-style: italic;
     color: #bbb;
 }
+
+/* =====================
+   AUSSTELLUNGS-HINWEIS
+   ===================== */
+.ausstellung {
+  background: #1a1a18;
+  border-bottom: 1px solid var(--line);
+  padding: 90px 24px;
+  text-align: center;
+}
+
+.ausstellung-badge {
+  display: inline-block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 7px 18px;
+  margin-bottom: 32px;
+}
+
+.ausstellung-titel {
+  font-family: 'Gothic Factory', 'UnifrakturCook', serif;
+  font-size: clamp(28px, 4vw, 54px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0.02em;
+  margin-bottom: 14px;
+  max-width: 20ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ausstellung-sub {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  margin-bottom: 34px;
+}
+
+.ausstellung-text {
+  font-size: 17px;
+  line-height: 1.85;
+  color: #c8c5bf;
+  max-width: 56ch;
+  margin: 0 auto 30px;
+}
+
+.ausstellung-ort {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+/* =====================
+   ABOUT — grauer Fond
+   ===================== */
+.about {
+  background: #202020;
+  max-width: none;
+  padding: 100px 24px;
+}
+
+.about-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  align-items: start;
+}
+
+.about-image {
+  background: #2c2c2a;
+  padding: 30px;
+  overflow: visible;
+}
+
+.about-image img,
+.about-image:hover img {
+  filter: none;
+  transform: none;
+}
+
+.bild-caption {
+  margin-top: 18px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-align: center;
+}
+
+.about-text h2 {
+  font-family: 'Gothic Factory', 'UnifrakturCook', serif;
+  font-size: clamp(24px, 2.6vw, 34px);
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: var(--fg);
+  margin-bottom: 26px;
+}
+
+.book-author {
+  margin-top: 26px;
+  font-size: 12px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent) !important;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+@media (max-width: 800px) {
+  .ausstellung { padding: 60px 20px; }
+  .about { padding: 60px 20px; }
+  .about-image { padding: 18px; }
+}
